@@ -5,6 +5,7 @@
 #----------------------------------------------------------------------------------------
 
 #--------- GENERAL VARS ----------------------------------
+list_profiles=$(grep '^[[]profile' <~/.aws/config | awk '{print $2}' | sed 's/]$//')
 outputfile="workermouse.html"
 slackchannel="1234567890"
 slacktoken="xoxp-aaaaaaaaaa-bbbbbbbbbbb-ccccccccc-dddddddddddddddddddd"
@@ -62,7 +63,7 @@ Designed to our developers avoid having orphaned resources and spend money on un
 # This bucle, use your profile to obtain all aws accounts and get data from all.
 # remember you need to have .aws/config and ./aws/credentials
 #---------------------------------------------------------
-for profile in $(grep '^[[]profile' <~/.aws/config | awk '{print $2}' | sed 's/]$//'); do
+for profile in $list_profiles; do
 	spy_mouse
 	spy_mouse_ebs
 	maintenance_mouse
